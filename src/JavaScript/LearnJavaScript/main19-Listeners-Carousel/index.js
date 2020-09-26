@@ -1,40 +1,55 @@
 function initCarousel() {
   // ваш код...
   const carouselSlideAll = document.querySelectorAll('.carousel__slide')
-  let total = 0
-  let counter = 0
-  const amountSliders = Array.from(carouselSlideAll).length
-
   const carouselArrowRight = document.querySelector('.carousel__arrow_right')
-  if (counter <= amountSliders) {
-    carouselArrowRight.addEventListener('click', function () {
-      counter += counter
-      console.log('hi')
-    })
+  const carouselArrowLeft = document.querySelector('.carousel__arrow_left')
+  const carouselArrow = document.querySelector('.carousel__arrow')
+  const carouselSlide = document.querySelector('.carousel__slide')
+  const carouselInner = document.querySelector('.carousel__inner')
+
+  let total = 0
+  let counter = 1
+  const amountSliders = Array.from(carouselSlideAll).length
+  const slideWidth = carouselSlide.offsetWidth
+
+  if (counter === 1) {
+    carouselArrowLeft.style.display = 'none'
   }
 
-  // for (let i = 0; i<amountSliders; i++) {
-  //   total = total + carouselSlideAll[i].offsetWidth
-  //   moveSlide(total)
-  // }
+  carouselArrowRight.addEventListener('click', function () {
+    carouselArrowLeft.style.display = ''
+    counter+= 1
+    total += slideWidth
+    if(counter < amountSliders) {
+      carouselInner.style.transform = `translateX(-${total}px)`
+      carouselArrowRight.style.display = ''
+    } else if (counter > amountSliders) {
+      total -= slideWidth
+    } else if (counter === amountSliders) {
+      carouselInner.style.transform = `translateX(-${total}px)`
+      carouselArrowRight.style.display = 'none'
+    }
+    console.log('total', total)
+    console.log('counter', counter)
+    console.log('slideWidth', slideWidth)
+  })
 
-  // const sumWidthSliders = Array.from(carouselSlideAll).map(el => (
-  //   total = total + el.offsetWidth
-  // ))
+  carouselArrowLeft.addEventListener('click', function () {
+    counter-= 1
+    total -= slideWidth
+    if(counter < amountSliders) {
+      carouselInner.style.transform = `translateX(-${total}px)`
+      carouselArrowRight.style.display = ''
+    } if (counter < 1) {
+      total += slideWidth
+    }  if (counter === 1) {
 
+      carouselArrowLeft.style.display = 'none'
+    }
+    console.log('total', total)
+    console.log('counter', counter)
+    console.log('slideWidth', slideWidth)
+  })
 
 }
 
-function moveSlide(carouselSlideWidth) {
-  const carouselInner = document.querySelector('.carousel__inner')
-  // const carouselSlide = document.querySelector('.carousel__slide')
-  // const carouselSlideWidth = carouselSlide.offsetWidth
-  // carouselInner.style.transform = `translateX(-${carouselSlideWidth}px)`
-
-  // const carouselArrowRight = document.querySelector('.carousel__arrow_right')
-
-  // carouselArrowRight.addEventListener('click', () => {
-  //   carouselInner.style.transform = `translateX(-${carouselSlideWidth}px)`
-  // })
-
-}

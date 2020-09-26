@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slider</title>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="headline">Aдаптивная галерея изображений</div>
+
+  <div id="gallery" class="gallery">
+    <div class="slider">
+      <div class="stage">
+        <div>
+          <img src="http://via.placeholder.com/400x266/0099ff/fff?text=Element 1" alt="">
+        </div>
+        <div>
+          <img src="http://via.placeholder.com/400x266/0099ff/fff?text=Element 2" alt="">
+        </div>
+        <div>
+          <img src="http://via.placeholder.com/400x266/0099ff/fff?text=Element 3" alt="">
+        </div>
+        <div>
+          <img src="http://via.placeholder.com/400x266/0099ff/fff?text=Element 4" alt="">
+        </div>
+        <div>
+          <img src="http://via.placeholder.com/400x266/0099ff/fff?text=Element 5" alt="">
+        </div>
+        <div>
+          <img src="http://via.placeholder.com/400x266/0099ff/fff?text=Element 6" alt="">
+        </div>
+        <div>
+          <img src="http://via.placeholder.com/400x266/0099ff/fff?text=Element 7" alt="">
+        </div>
+        <div>
+          <img src="http://via.placeholder.com/400x266/0099ff/fff?text=Element 8" alt="">
+        </div>
+        <div>
+          <img src="http://via.placeholder.com/400x266/0099ff/fff?text=Element 9" alt="">
+        </div>
+        <div>
+          <img src="http://via.placeholder.com/400x266/0099ff/fff?text=Element 10" alt="">
+        </div>
+        <div>
+          <img src="http://via.placeholder.com/400x266/0099ff/fff?text=Element 11" alt="">
+        </div>
+        <div>
+          <img src="http://via.placeholder.com/400x266/0099ff/fff?text=Element 12" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="control">
+      <div class="nav-ctrl">
+        <span class="prev" data-shift="prev">prev</span>
+        <span class="next" data-shift="next">next</span>
+      </div>
+      <ul class="dots-ctrl"></ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  // настраиваем галерею с учётом входных данных, аргументы: id родительского блока
+  // слайдера и объект с пользовательскими настройками галереи.
+  var gallery1 = new Gallery('gallery', {
+    // одновременно выводится 4 элемента
+    visibleItems: 4,
+    // разрешаем постраничную навигацию
+    dots: true,
+    // разрешаем управление с клавиатуры клавишами навигации "вправо / влево"
+    keyControl: true
+  });
+</script>
+
+<script src="./index.js"></script>
+
+</body>
+</html>
