@@ -19,17 +19,17 @@ export default class UserTable {
         this._rows = rows
         this._tr = this.init()
         this.elem = this._tr
-        console.log('this._tr', this._tr)
+        // console.log('this._tr', this._tr)
     }
 
     init() {
-        // const tr = document.createElement('tr')
         const tr = document.querySelector('tr')
-        tr.innerHTML = this.toRow()
+        tr.innerHTML = this.toRow(this._rows)
         return this._tr = tr
     }
 
-    toRow() {
+    toRow(rows) {
+        console.log('rows', rows)
        return `
         <td>Илья!</td>
         <td>25</td>
