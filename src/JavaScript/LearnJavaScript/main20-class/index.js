@@ -17,27 +17,40 @@
 export default class UserTable {
     constructor(rows) {
         this._rows = rows
-        this._tr = this.init()
-        this.elem = this._tr
-        // console.log('this._tr', this._tr)
+        this._tbody = this.init()
+        this.elem = this._tbody
+        this.deleteRow()
     }
 
     init() {
-        const tr = document.querySelector('tr')
-        tr.innerHTML = this.toRow(this._rows)
-        return this._tr = tr
+        let tbody = document.createElement('tbody')
+        for (let i=0; i<this._rows.length; i++) {
+            console.log('this._rows', this._rows[i])
+            tbody.insertAdjacentHTML('beforeend', this.toRow(this._rows[i]))
+        }
+        return this._tbody = tbody
     }
 
-    toRow(rows) {
-        console.log('rows', rows)
-       return `
-        <td>Илья!</td>
-        <td>25</td>
-        <td>1000</td>
-        <td>Petrozavodsk</td>
-        <td><button>X</button></td>
-        `
+    toRow({name, age, salary, city}) {
+            return `
+            <tr>
+            <td>${name}</td>
+            <td>${age}</td>
+            <td>${salary}</td>
+            <td>${city}</td>
+            <td><button>X</button></td>
+            </tr>
+            `       
     }
 
+    deleteRow() {
+        document.addEventListener('click', function(event) {
+            console.log(event.target)
+            if (event.target.tagName === 'BUTTON') {
+                event.target.closest('tr').style.display = 'none'         
+            }
+        })
+    }
 }
+
 
