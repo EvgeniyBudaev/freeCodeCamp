@@ -47,7 +47,8 @@ export default class UserTable {
         document.addEventListener('click', function(event) {
             console.log(event.target)
             if (event.target.tagName === 'BUTTON') {
-                event.target.closest('tr').style.display = 'none'         
+                // event.target.closest('tr').style.display = 'none'
+                event.target.closest('tr').remove()
             }
         })
     }
