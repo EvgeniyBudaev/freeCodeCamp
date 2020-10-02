@@ -44,7 +44,7 @@ export default class UserTable {
     }
 
     deleteRow() {
-        document.addEventListener('click', function(event) {
+        this.elem.addEventListener('click', function(event) {
             console.log(event.target)
             if (event.target.tagName === 'BUTTON') {
                 // event.target.closest('tr').style.display = 'none'
