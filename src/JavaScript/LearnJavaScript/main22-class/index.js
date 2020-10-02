@@ -25,9 +25,7 @@ export default class Carousel {
       </div>
 
       <div class="carousel__inner">
-        ${
-            this.iteratorSlides(slides)
-        }
+        ${this.iteratorSlides(slides)}
         `
     }
 
@@ -91,9 +89,9 @@ console.log('carouselSlide', carouselSlide)
                 if(counter < amountSliders) {
                     carouselInner.style.transform = `translateX(-${total}px)`
                     carouselArrowRight.style.display = ''
-                } if (counter < 1) {
+                } else if (counter < 1) {
                     total += slideWidth
-                }  if (counter === 1) {
+                } else  if (counter === 1) {
 
                     carouselArrowLeft.style.display = 'none'
                 }
