@@ -89,9 +89,9 @@ console.log('carouselSlide', carouselSlide)
                 if(counter < amountSliders) {
                     carouselInner.style.transform = `translateX(-${total}px)`
                     carouselArrowRight.style.display = ''
-                } else if (counter < 1) {
+                } if (counter < 1) {
                     total += slideWidth
-                } else  if (counter === 1) {
+                } if (counter === 1) {
 
                     carouselArrowLeft.style.display = 'none'
                 }
