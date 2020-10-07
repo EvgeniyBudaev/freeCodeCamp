@@ -1,7 +1,7 @@
 export default class ProductCard {
     constructor(product) {
         console.log('product', product)
-        this._product = product
+        this.product = product
         this.elem = this.init()
         this.addCard()
     }
@@ -9,7 +9,7 @@ export default class ProductCard {
     init() {
         const card = document.createElement('div')
         card.className = 'card'
-        card.insertAdjacentHTML('beforeend', this.toHTML(this._product))
+        card.insertAdjacentHTML('beforeend', this.toHTML(this.product))
         return card
     }
 
@@ -29,22 +29,11 @@ export default class ProductCard {
     }
 
     addCard() {
-        document.addEventListener('DOMContentLoaded', () => {
-            const button = document.querySelector('.card__button')
-            const card = document.querySelector('.card')
-
-            card.addEventListener("product-add", function(event) {
-                console.log('событие создано', event.detail)
-            })
-
-            button.addEventListener('click', () => {
-
-                button.dispatchEvent(new CustomEvent("product-add", {
-                    detail: this._product.id,
-                    bubbles: true
-                }))
-            })
-
-        })
-    }
+        this.elem.addEventListener('click', () => {
+            this.elem.dispatchEvent(new CustomEvent("product-add", {
+                detail: this.product.id,
+                bubbles: true
+            }));
+        });
+      }
 }
