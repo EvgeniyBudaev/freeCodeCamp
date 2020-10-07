@@ -4,9 +4,9 @@ export default class RibbonMenu {
     constructor(categories) {
         this.categories = categories;
         this.render();
-        this.category = 0;
+        this.init();
         this.addEventListeners();
-        this.iteratorMenu()
+        this.addClassActive()
     }
 
     render() {
@@ -33,28 +33,39 @@ export default class RibbonMenu {
 `))
 
         this.sub('inner').append(...categories);
-
-        // const itemStatusAll = document.querySelector('[data-id=""]')
-        // console.log('itemStatusAll', itemStatusAll)
-        // if (itemStatusAll) {
-        //     itemStatusAll.classList.add('ribbon__item_active')
-        // }
     }
 
     sub(ref) {
         return this.elem.querySelector(`.ribbon__${ref}`);
     }
 
-    iteratorMenu() {
-        const items = document.querySelectorAll('.ribbon__item')
-        console.log('items ', items)
-        items.forEach(item => item )
+    init() {
+        // let ribbonArrowLeft = this.elem.querySelector('.ribbon__arrow_left')
+        // ribbonArrowLeft.classList.remove('ribbon__arrow_visible')
+    }
+
+    addClassActive() {
+        const itemStatusAll = this.elem.querySelector('[data-id=""]')
+        if (itemStatusAll) {
+            itemStatusAll.classList.add('ribbon__item_active')
+        }
+
     }
 
     addEventListeners() {
         this.elem.onclick = ({target}) => {
-            const ribbonInner = document.querySelector('.ribbon__inner')
-            console.log('res', ribbonInner)
+            const ribbonInner = this.elem.querySelector('.ribbon__inner')
+            let ribbonArrowLeft = this.elem.querySelector('.ribbon__arrow_left')
+            let ribbonArrowRight = this.elem.querySelector('.ribbon__arrow_right')
+            let scrollLeft = ribbonInner.scrollLeft;
+
+            console.log('ribbonArrowLeft', ribbonArrowLeft);
+            let scrollWidth = ribbonInner.scrollWidth;
+            scrollLeft = ribbonInner.scrollLeft;
+            let clientWidth = ribbonInner.clientWidth;
+            let scrollRight = scrollWidth - scrollLeft - clientWidth;
+            console.log('scrollRight', scrollRight);
+
             let button = target.closest('.ribbon__arrow');
             // if (button) {
             //
@@ -67,38 +78,39 @@ export default class RibbonMenu {
             // }
 
             if (target.closest('.ribbon__arrow_right')) {
-                this.next(ribbonInner);
+                this.next(ribbonInner, ribbonArrowRight, scrollRight);
             }
 
             if (target.closest('.ribbon__arrow_left')) {
-                this.prev(ribbonInner);
+                this.prev(ribbonInner, ribbonArrowLeft, scrollLeft);
             }
         };
     }
 
-    next(ribbonInner) {
+    next(ribbonInner, ribbonArrowRight, scrollRight) {
         ribbonInner.scrollBy(350, 0);
-        this.category ++;
-        this.update(ribbonInner);
+        ribbonInner.addEventListener('scroll', () => {
+            if (scrollRight <= 1) {
+                ribbonArrowRight.classList.remove('ribbon__arrow_visible')
+            } else if (scrollRight > 1) {
+                ribbonArrowRight.classList.add('ribbon__arrow_visible')
+            }
+        })
     }
 
-    prev(ribbonInner) {
+    prev(ribbonInner, ribbonArrowLeft, scrollLeft) {
         ribbonInner.scrollBy(-350, 0);
-        this.category --;
-        this.update(ribbonInner);
+        ribbonInner.addEventListener('scroll', () => {
+            console.log('scrollLeft', scrollLeft);
+            if (scrollLeft === 0) {
+                ribbonArrowLeft.classList.remove('ribbon__arrow_visible')
+            } else if (scrollLeft > 0) {
+                ribbonArrowLeft.classList.add('ribbon__arrow_visible')
+            }
+        })
     }
 
-    update(ribbonInner) {
-        let scrollLeft = ribbonInner.scrollLeft;
-        console.log('scrollLeft', scrollLeft);
 
-        let scrollWidth = ribbonInner.scrollWidth;
-        scrollLeft = ribbonInner.scrollLeft;
-        let clientWidth = ribbonInner.clientWidth;
-
-        let scrollRight = scrollWidth - scrollLeft - clientWidth;
-        console.log('scrollRight', scrollRight);
-    }
 
 
 }
