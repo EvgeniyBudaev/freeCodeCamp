@@ -3,7 +3,6 @@ function initCarousel() {
   const carouselSlideAll = document.querySelectorAll('.carousel__slide')
   const carouselArrowRight = document.querySelector('.carousel__arrow_right')
   const carouselArrowLeft = document.querySelector('.carousel__arrow_left')
-  const carouselArrow = document.querySelector('.carousel__arrow')
   const carouselSlide = document.querySelector('.carousel__slide')
   const carouselInner = document.querySelector('.carousel__inner')
 
